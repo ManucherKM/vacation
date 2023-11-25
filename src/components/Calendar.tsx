@@ -1,5 +1,5 @@
 import type { BadgeProps, CalendarProps } from 'antd'
-import { Badge, Calendar } from 'antd'
+import { Calendar as AntdCalendar, Badge } from 'antd'
 import type { Dayjs } from 'dayjs'
 
 const getListData = (value: Dayjs) => {
@@ -7,25 +7,25 @@ const getListData = (value: Dayjs) => {
 	switch (value.date()) {
 		case 8:
 			listData = [
-				{ type: 'warning', content: 'This is warning event.' },
-				{ type: 'success', content: 'This is usual event.' },
+				{ type: 'warning', content: 'Иванов Иван Иванович 1' },
+				{ type: 'success', content: 'Иванов Иван Иванович 2' },
 			]
 			break
 		case 10:
 			listData = [
-				{ type: 'warning', content: 'This is warning event.' },
-				{ type: 'success', content: 'This is usual event.' },
-				{ type: 'error', content: 'This is error event.' },
+				{ type: 'warning', content: 'Иванов Иван Иванович 3' },
+				{ type: 'success', content: 'Иванов Иван Иванович 4' },
+				{ type: 'error', content: 'Иванов Иван Иванович 5' },
 			]
 			break
 		case 15:
 			listData = [
-				{ type: 'warning', content: 'This is warning event' },
-				{ type: 'success', content: 'This is very long usual event......' },
-				{ type: 'error', content: 'This is error event 1.' },
-				{ type: 'error', content: 'This is error event 2.' },
-				{ type: 'error', content: 'This is error event 3.' },
-				{ type: 'error', content: 'This is error event 4.' },
+				{ type: 'warning', content: 'Иванов Иван Иванович 6' },
+				{ type: 'success', content: 'Иванов Иван Иванович 7' },
+				{ type: 'error', content: 'Иванов Иван Иванович 8' },
+				{ type: 'error', content: 'Иванов Иван Иванович 9' },
+				{ type: 'error', content: 'Иванов Иван Иванович 10' },
+				{ type: 'error', content: 'Иванов Иван Иванович 11' },
 			]
 			break
 		default:
@@ -39,7 +39,7 @@ const getMonthData = (value: Dayjs) => {
 	}
 }
 
-export const WorkerCalendar = () => {
+export const Calendar = () => {
 	const monthCellRender = (value: Dayjs) => {
 		const num = getMonthData(value)
 		return num ? (
@@ -73,8 +73,7 @@ export const WorkerCalendar = () => {
 	}
 	return (
 		<>
-			{/* <NavBar /> */}
-			<Calendar cellRender={cellRender} />
+			<AntdCalendar cellRender={cellRender} />
 		</>
 	)
 }

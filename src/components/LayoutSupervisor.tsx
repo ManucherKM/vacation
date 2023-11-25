@@ -1,5 +1,5 @@
 import { history } from '@/configuration/history'
-import { EOptionWorkerDashboard, ERoutes } from '@/configuration/routes'
+import { EOptionSupervisorDashboard, ERoutes } from '@/configuration/routes'
 import { useAuthStore } from '@/storage'
 import { UserOutlined } from '@ant-design/icons'
 import { Breadcrumb, Layout, Menu, theme } from 'antd'
@@ -8,11 +8,11 @@ import { useNavigate } from 'react-router'
 
 const { Header, Content, Footer, Sider } = Layout
 
-export interface ILayoutWorker {
+export interface ILayoutSupervisor {
 	children: ReactNode
 }
 
-export const LayoutWorker: FC<ILayoutWorker> = ({ children }) => {
+export const LayoutSupervisor: FC<ILayoutSupervisor> = ({ children }) => {
 	const {
 		token: { colorBgContainer },
 	} = theme.useToken()
@@ -44,7 +44,7 @@ export const LayoutWorker: FC<ILayoutWorker> = ({ children }) => {
 					label: 'Календарь',
 					onClick: function () {
 						history.push(
-							ERoutes.workerdashboard + '/' + EOptionWorkerDashboard.calendar,
+							ERoutes.supervisor + '/' + EOptionSupervisorDashboard.calendar,
 						)
 					},
 				},
@@ -53,7 +53,7 @@ export const LayoutWorker: FC<ILayoutWorker> = ({ children }) => {
 					label: 'Подать заявку',
 					onClick: function () {
 						history.push(
-							ERoutes.workerdashboard + '/' + EOptionWorkerDashboard.apply,
+							ERoutes.supervisor + '/' + EOptionSupervisorDashboard.apply,
 						)
 					},
 				},
@@ -62,7 +62,7 @@ export const LayoutWorker: FC<ILayoutWorker> = ({ children }) => {
 					label: 'История',
 					onClick: function () {
 						history.push(
-							ERoutes.workerdashboard + '/' + EOptionWorkerDashboard.history,
+							ERoutes.supervisor + '/' + EOptionSupervisorDashboard.history,
 						)
 					},
 				},
@@ -71,7 +71,19 @@ export const LayoutWorker: FC<ILayoutWorker> = ({ children }) => {
 					label: 'Статистика',
 					onClick: function () {
 						history.push(
-							ERoutes.workerdashboard + '/' + EOptionWorkerDashboard.statistic,
+							ERoutes.supervisor + '/' + EOptionSupervisorDashboard.statistic,
+						)
+					},
+				},
+
+				{
+					key: 'Работники',
+					label: 'Работники',
+					onClick: function () {
+						history.push(
+							ERoutes.supervisor +
+								'/' +
+								EOptionSupervisorDashboard.subordinates,
 						)
 					},
 				},
@@ -107,7 +119,9 @@ export const LayoutWorker: FC<ILayoutWorker> = ({ children }) => {
 					</Content>
 				</Layout>
 			</Content>
-			<Footer style={{ textAlign: 'center' }}>Vacation ©2023</Footer>
+			<Footer style={{ textAlign: 'center', width: '100%' }}>
+				Vacation ©2023
+			</Footer>
 		</Layout>
 	)
 }

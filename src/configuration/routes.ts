@@ -3,6 +3,7 @@ import type { FC } from 'react'
 
 // Components
 import { Home, Login, Registration } from '@/pages'
+import { SupervisorDashboard } from '@/pages/SupervisorDashboard/SupervisorDashboard'
 import { WorkerDashboard } from '@/pages/WorkerDashboard/WorkerDashboard'
 
 /** Application Routing Interface. */
@@ -18,6 +19,15 @@ export enum EOptionWorkerDashboard {
 	calendar = 'calendar',
 	history = 'history',
 	apply = 'apply',
+	statistic = 'statistic',
+}
+
+export enum EOptionSupervisorDashboard {
+	calendar = 'calendar',
+	history = 'history',
+	apply = 'apply',
+	statistic = 'statistic',
+	subordinates = 'subordinates',
 }
 
 /** Enumeration of possible application routes. */
@@ -31,8 +41,9 @@ export enum ERoutes {
 	/** `Registration` page route. */
 	registration = '/auth/registration',
 
-	/** `InfoCalendar` page route. */
 	workerdashboard = '/workerdashboard',
+
+	supervisor = '/supervisor',
 }
 
 /** Public Routes */
@@ -56,5 +67,9 @@ export const privateRoutes: IRoute[] = [
 	{
 		path: ERoutes.workerdashboard + '/:option',
 		component: WorkerDashboard,
+	},
+	{
+		path: ERoutes.supervisor + '/:option',
+		component: SupervisorDashboard,
 	},
 ]

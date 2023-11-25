@@ -3,8 +3,13 @@ import react from '@vitejs/plugin-react'
 import path from "path"
 
 export default defineConfig({
-  plugins: [react()],
-  resolve: {
+	plugins: [react()],
+	build: {
+		rollupOptions: {
+			treeshake: true
+		}
+	},
+	resolve: {
 		alias: {
 			'@': path.resolve('./src'),
 		},

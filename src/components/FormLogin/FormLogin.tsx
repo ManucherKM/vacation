@@ -51,8 +51,8 @@ export const FormLogin = () => {
 			history.push(
 				ERoutes.workerdashboard + '/' + EOptionWorkerDashboard.calendar,
 			)
-		} else {
-			// history.push(ERoutes.workerdashboard)
+		} else if (role === ERoles.supervisor) {
+			history.push(ERoutes.supervisor + '/' + EOptionWorkerDashboard.calendar)
 		}
 	}, [role])
 
