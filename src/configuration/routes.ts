@@ -28,6 +28,7 @@ export enum EOptionSupervisorDashboard {
 	apply = 'apply',
 	statistic = 'statistic',
 	subordinates = 'subordinates',
+	applications = 'applications',
 }
 
 /** Enumeration of possible application routes. */

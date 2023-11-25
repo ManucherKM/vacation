@@ -1,4 +1,5 @@
 import {
+	Applications,
 	Apply,
 	Calendar,
 	History,
@@ -19,11 +20,13 @@ export const SupervisorDashboard = () => {
 			{option === EOptionSupervisorDashboard.history && <History />}
 			{option === EOptionSupervisorDashboard.statistic && <Statistic />}
 			{option === EOptionSupervisorDashboard.subordinates && <Subordinates />}
+			{option === EOptionSupervisorDashboard.applications && <Applications />}
 			{option !== EOptionSupervisorDashboard.apply &&
 				option !== EOptionSupervisorDashboard.calendar &&
 				option !== EOptionSupervisorDashboard.history &&
 				option !== EOptionSupervisorDashboard.statistic &&
-				option !== EOptionSupervisorDashboard.subordinates && (
+				option !== EOptionSupervisorDashboard.subordinates &&
+				option !== EOptionSupervisorDashboard.applications && (
 					<h2>Option not found</h2>
 				)}
 		</LayoutSupervisor>

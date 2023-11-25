@@ -58,6 +58,17 @@ export const LayoutSupervisor: FC<ILayoutSupervisor> = ({ children }) => {
 					},
 				},
 				{
+					key: 'Заявки',
+					label: 'Заявки',
+					onClick: function () {
+						history.push(
+							ERoutes.supervisor +
+								'/' +
+								EOptionSupervisorDashboard.applications,
+						)
+					},
+				},
+				{
 					key: 'История',
 					label: 'История',
 					onClick: function () {
