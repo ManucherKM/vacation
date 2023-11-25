@@ -2,13 +2,9 @@
 import type { IAuthStore } from './types'
 
 // Utils
-import axios from '@/configuration/axios'
-import { env } from '@/configuration/env'
+
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-
-// The URL where the web application is hosted.
-const CLIENT_URL = env.get('CLIENT_URL').required().asString()
 
 // Default storage object.
 const defaultAuthStore = {
@@ -18,10 +14,12 @@ const defaultAuthStore = {
 /** With this hook you can access the authorization storage. */
 export const useAuthStore = create(
 	persist<IAuthStore>(
-		(set, get) => ({
+		set => ({
 			...defaultAuthStore,
 			async login(loginDto) {
 				try {
+					console.log(loginDto)
+
 					// Return true.
 					return true
 				} catch (e) {
@@ -34,6 +32,8 @@ export const useAuthStore = create(
 			},
 			async registration(registrationDto) {
 				try {
+					console.log(registrationDto)
+
 					// Return true.
 					return true
 				} catch (e) {
