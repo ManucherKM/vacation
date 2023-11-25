@@ -1,0 +1,13 @@
+.root {
+	position: absolute;
+	padding: 20px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+
+	.alert {
+		width: 100%;
+		max-width: 380px;
+		text-align: center;
+	}
+}
