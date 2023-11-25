@@ -25,5 +25,5 @@ export interface IList<T> {
  * @param props Propses
  */
 export function List<T>({ arr, callback }: IList<T>) {
-	return arr.map(callback)
+	return <>{arr.map(callback)}</>
 }
