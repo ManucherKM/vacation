@@ -6,7 +6,7 @@ class Event {
 }
 
 const simulateDate = (value: number) => {
-	var t = new Date()
+	const t = new Date()
 	t.setDate(t.getDate() + value)
 	return t
 }

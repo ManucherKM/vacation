@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { format } from 'date-fns'
 import { de } from 'date-fns/locale'
 import classes from './Subordinates.module.scss'
@@ -35,7 +37,10 @@ interface CustomTooltip extends TooltipPositionerMap {
 	custom: any
 }
 
-;(Tooltip.positioners as CustomTooltip).custom = (eventPosition: any) => {
+;(Tooltip.positioners as CustomTooltip).custom = (
+	elements: any,
+	eventPosition: any,
+) => {
 	return {
 		x: eventPosition.x,
 		y: eventPosition.y,
@@ -51,7 +56,7 @@ const labels = [...new Set(testData.map(event => event.EventSource))]
 
 const eventNames = [...new Set(testData.map(event => event.EventName))]
 const eventColors = eventNames
-	.map((_, i) => {
+	.map((val, i) => {
 		var color = `hsl(${
 			(i * (360 / (eventNames.length || 1))) % 360
 		},100%,50%, 1)`
@@ -74,12 +79,12 @@ const datasets = sortedData.map(event => {
 	let stack: StackData | undefined = undefined
 	let firstStackEntry: boolean = false
 
-	if (labelGrouping[event.EventSource as any] === undefined) {
+	if (labelGrouping[event.EventSource as unknown as number] === undefined) {
 		stack = { Stack: 'Stack0', LastDate: event.End }
-		labelGrouping[event.EventSource as any] = [stack]
+		labelGrouping[event.EventSource as unknown as number] = [stack]
 		firstStackEntry = true
 	} else {
-		labelGrouping[event.EventSource as any].forEach(item => {
+		labelGrouping[event.EventSource as unknown as number].forEach(item => {
 			if (
 				stack === undefined &&
 				item.LastDate.getTime() <= event.Start.getTime()
@@ -89,9 +94,10 @@ const datasets = sortedData.map(event => {
 			}
 		})
 		if (stack === undefined) {
-			const stackIndex = labelGrouping[event.EventSource as any].length
+			const stackIndex =
+				labelGrouping[event.EventSource as unknown as number].length
 			stack = { Stack: 'Stack' + stackIndex, LastDate: event.End }
-			labelGrouping[event.EventSource as any].push(stack)
+			labelGrouping[event.EventSource as unknown as number].push(stack)
 			firstStackEntry = true
 		}
 	}
@@ -102,6 +108,7 @@ const datasets = sortedData.map(event => {
 		start -= stack.LastDate.getTime()
 		end -= stack.LastDate.getTime()
 	}
+
 	data[labels.indexOf(event.EventSource)] = [
 		start,
 		end,
@@ -127,7 +134,7 @@ const data = {
 
 export const options: ChartOptions<'bar'> = {
 	indexAxis: 'y' as const,
-	aspectRatio: 2.5,
+	aspectRatio: 2,
 	plugins: {
 		tooltip: {
 			callbacks: {
@@ -143,7 +150,7 @@ export const options: ChartOptions<'bar'> = {
 		},
 		title: {
 			display: true,
-			text: 'График отпусков работников',
+			text: 'Timeline',
 		},
 		datalabels: {
 			color: 'black',
