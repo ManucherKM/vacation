@@ -1,27 +1,43 @@
 // Types
 import axios from '@/configuration/axios'
-import { EAuthStoreApiRoutes, type IAuthStore } from './types'
+import {
+	EAuthStoreApiRoutes,
+	ERoles,
+	ILoginResponse,
+	type IAuthStore,
+} from './types'
 
 // Utils
 
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import { useNotificationsStore } from '../useNotificationsStore/useNotificationsStore'
+import { useStore } from '../useStore/useStore'
 
 // Default storage object.
 const defaultAuthStore = {
 	token: null,
+	role: null,
 } as IAuthStore
 
 /** With this hook you can access the authorization storage. */
 export const useAuthStore = create(
 	persist<IAuthStore>(
-		set => ({
+		(set, get) => ({
 			...defaultAuthStore,
 			async login(loginDto) {
 				try {
+					const { data } = await axios.post<ILoginResponse>(
+						EAuthStoreApiRoutes.login,
+						loginDto,
+					)
 					console.log(loginDto)
-					const { data } = await axios.post(EAuthStoreApiRoutes.login, loginDto)
-					console.log(data)
+
+					set({ token: 'asd', role: ERoles.worker })
+
+					// if (!data?.token) {
+					// 	return false
+					// }
 
 					// Return true.
 					return true
@@ -49,28 +65,11 @@ export const useAuthStore = create(
 			},
 
 			async logout() {
-				try {
-					// Return true.
-					return true
-				} catch (e) {
-					// We show the error in the console.
-					console.error(e)
-					// Return false.
-					return false
-				}
+				get().reset()
+				useNotificationsStore.getState().reset()
+				useStore.getState().reset()
 			},
-			async getNewAccessToken() {
-				try {
-					// Return true.
-					return true
-				} catch (e) {
-					// We show the error in the console.
-					console.error(e)
 
-					// Return false.
-					return false
-				}
-			},
 			setToken(token) {
 				// We change the token.
 				set({ token })

@@ -1,5 +1,7 @@
-import { ERoutes } from '@/configuration/routes'
-import { useAuthStore, useNotificationsStore } from '@/storage'
+import { history } from '@/configuration/history'
+import { EOptionWorkerDashboard, ERoutes } from '@/configuration/routes'
+import { useAuthStore, useNotificationsStore, useStore } from '@/storage'
+import { ERoles } from '@/storage/useAuthStore/types'
 import { validateEmail, validatePassword } from '@/utils'
 import { Button, Input } from 'antd'
 import { ChangeEvent, useEffect, useState } from 'react'
@@ -15,6 +17,8 @@ export const FormLogin = () => {
 	const login = useAuthStore(store => store.login)
 	const newError = useNotificationsStore(store => store.newError)
 	const newMessage = useNotificationsStore(store => store.newMessage)
+	const role = useAuthStore(store => store.role)
+	const setLoading = useStore(store => store.setLoading)
 
 	function emailChangeHandler(e: ChangeEvent<HTMLInputElement>) {
 		setEmail(e.target.value)
@@ -28,8 +32,11 @@ export const FormLogin = () => {
 		if (!isEmailValid || !isPasswordValid) {
 			return
 		}
+		setLoading(true)
 
 		const isSuccess = await login({ email, password })
+
+		setLoading(false)
 
 		if (!isSuccess) {
 			newError('Неверный логин или пароль.')
@@ -38,6 +45,16 @@ export const FormLogin = () => {
 
 		newMessage('Пользователь авторизован.')
 	}
+
+	useEffect(() => {
+		if (role === ERoles.worker) {
+			history.push(
+				ERoutes.workerdashboard + '/' + EOptionWorkerDashboard.calendar,
+			)
+		} else {
+			// history.push(ERoutes.workerdashboard)
+		}
+	}, [role])
 
 	useEffect(() => {
 		const isValid = validateEmail(email)

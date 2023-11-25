@@ -1,5 +1,5 @@
 import { ERoutes } from '@/configuration/routes'
-import { useAuthStore, useNotificationsStore } from '@/storage'
+import { useAuthStore, useNotificationsStore, useStore } from '@/storage'
 import { validateEmail, validatePassword } from '@/utils'
 import { Button, Input } from 'antd'
 import { ChangeEvent, useEffect, useState } from 'react'
@@ -15,6 +15,7 @@ export const FormRegistration = () => {
 	const registration = useAuthStore(store => store.registration)
 	const newError = useNotificationsStore(store => store.newError)
 	const newMessage = useNotificationsStore(store => store.newMessage)
+	const setLoading = useStore(store => store.setLoading)
 
 	function emailChangeHandler(e: ChangeEvent<HTMLInputElement>) {
 		setEmail(e.target.value)
@@ -29,7 +30,11 @@ export const FormRegistration = () => {
 			return
 		}
 
+		setLoading(true)
+
 		const isSuccess = await registration({ email, password })
+
+		setLoading(false)
 
 		if (!isSuccess) {
 			newError('Не удалось создать пользователя')

@@ -12,8 +12,8 @@ export interface ILoginTarget {
  * function.
  */
 export interface ILoginResponse {
-	/** User access token. */
-	accessToken: string
+	token: string
+	role: `${ERoles}`
 }
 
 /** The interface of parameters that the `registration` function accepts. */
@@ -34,19 +34,21 @@ export interface IRegistrationResponse {
 	success: boolean
 }
 
-/** API response object interface when receiving a new access token. */
-export interface IGetNewAccessTokenResponse {
-	/** User access token. */
-	accessToken: string
-}
-
 /** Access token type. */
 export type Token = string | null
+
+export enum ERoles {
+	worker = 'worker',
+	supervisor = 'supervisor',
+}
 
 /** Interface to the authorization store. */
 export interface IAuthStore {
 	/** User access token. */
 	token: Token
+
+	/** User access token. */
+	role: ERoles | null
 
 	/**
 	 * User authorization function.
@@ -62,9 +64,6 @@ export interface IAuthStore {
 	 */
 	registration: (registrationDto: IRegistrationTarget) => Promise<boolean>
 
-	/** Function to get a new access token. */
-	getNewAccessToken: () => Promise<boolean>
-
 	/**
 	 * Function to change the user's access token.
 	 *
@@ -73,7 +72,7 @@ export interface IAuthStore {
 	setToken: (token: Token) => void
 
 	/** Function for logging out of a user account. */
-	logout: () => Promise<boolean>
+	logout: () => Promise<void>
 
 	/** Function to reset the storage to its initial state. */
 	reset: () => void

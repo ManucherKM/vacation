@@ -1,5 +1,9 @@
+@import '@/assets/styles/vars.scss';
+
 .root {
 	padding: 20px;
+	border-bottom: 1px solid $gray;
+
 	.auth {
 		display: flex;
 		gap: 8px;

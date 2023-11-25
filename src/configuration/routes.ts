@@ -3,6 +3,7 @@ import type { FC } from 'react'
 
 // Components
 import { Home, Login, Registration } from '@/pages'
+import { WorkerDashboard } from '@/pages/WorkerDashboard/WorkerDashboard'
 
 /** Application Routing Interface. */
 export interface IRoute {
@@ -11,6 +12,12 @@ export interface IRoute {
 
 	/** The component that will be rendered. */
 	component: FC
+}
+
+export enum EOptionWorkerDashboard {
+	calendar = 'calendar',
+	history = 'history',
+	apply = 'apply',
 }
 
 /** Enumeration of possible application routes. */
@@ -23,6 +30,9 @@ export enum ERoutes {
 
 	/** `Registration` page route. */
 	registration = '/auth/registration',
+
+	/** `InfoCalendar` page route. */
+	workerdashboard = '/workerdashboard',
 }
 
 /** Public Routes */
@@ -43,8 +53,8 @@ export const publicRoutes: IRoute[] = [
 
 /** Private Routes */
 export const privateRoutes: IRoute[] = [
-	// {
-	// 	path: ERoutes.storage,
-	// 	component: Storage,
-	// },
+	{
+		path: ERoutes.workerdashboard + '/:option',
+		component: WorkerDashboard,
+	},
 ]

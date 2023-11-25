@@ -2,11 +2,18 @@ import { history } from '@/configuration/history'
 import { ERoutes } from '@/configuration/routes'
 import { useAuthStore } from '@/storage'
 import { Button } from 'antd'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import classes from './NavBar.module.scss'
 
 export const NavBar = () => {
 	const isAuth = useAuthStore(store => !!store.token)
+	const logout = useAuthStore(store => store.logout)
+	const navigate = useNavigate()
+
+	function logoutHandler() {
+		logout()
+		navigate(ERoutes.home)
+	}
 
 	return (
 		<div className={classes.root}>
@@ -29,7 +36,7 @@ export const NavBar = () => {
 						</svg>
 					</Link>
 				</div>
-				{!isAuth && (
+				{!isAuth ? (
 					<div className={classes.auth}>
 						<Button onClick={() => history.push(ERoutes.login)}>Вход</Button>
 						<Button
@@ -39,6 +46,10 @@ export const NavBar = () => {
 							Регистрация
 						</Button>
 					</div>
+				) : (
+					<Button type="primary" onClick={logoutHandler}>
+						Выход
+					</Button>
 				)}
 			</nav>
 		</div>
