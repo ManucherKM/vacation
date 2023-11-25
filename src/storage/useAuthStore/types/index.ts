@@ -82,7 +82,7 @@ export interface IAuthStore {
 /** Routes for api requests to the authorization store. */
 export enum EAuthStoreApiRoutes {
 	/** Route for user authorization. */
-	login = '/api/auth/login',
+	login = '/register',
 
 	/** Route for user registration. */
 	registration = '/api/auth/registration',

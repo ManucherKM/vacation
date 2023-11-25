@@ -2,7 +2,7 @@
 import type { FC } from 'react'
 
 // Components
-import { Login, Registration } from '@/pages'
+import { Home, Login, Registration } from '@/pages'
 
 /** Application Routing Interface. */
 export interface IRoute {
@@ -15,6 +15,9 @@ export interface IRoute {
 
 /** Enumeration of possible application routes. */
 export enum ERoutes {
+	/** `Home` page route. */
+	home = '/',
+
 	/** `Login` page route. */
 	login = '/auth/login',
 
@@ -24,6 +27,10 @@ export enum ERoutes {
 
 /** Public Routes */
 export const publicRoutes: IRoute[] = [
+	{
+		path: ERoutes.home,
+		component: Home,
+	},
 	{
 		path: ERoutes.login,
 		component: Login,

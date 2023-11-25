@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router'
 
 import { privateRoutes, publicRoutes } from '@/configuration/routes'
 import { useAuthStore } from '@/storage'
+import { NotFound404 } from '.'
 
 export const AppRouter: FC = () => {
 	// The state responsible for user authorization.
@@ -28,7 +29,7 @@ export const AppRouter: FC = () => {
 					/>
 				))}
 
-			<Route path="/*" element={<h1>404 Page Not Found</h1>} />
+			<Route path="/*" element={<NotFound404 />} />
 		</Routes>
 	)
 }

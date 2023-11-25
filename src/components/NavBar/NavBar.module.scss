@@ -1,0 +1,12 @@
+.root {
+	padding: 20px;
+	.auth {
+		display: flex;
+		gap: 8px;
+	}
+
+	nav {
+		display: flex;
+		justify-content: space-between;
+	}
+}

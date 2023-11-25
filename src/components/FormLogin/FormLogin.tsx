@@ -1,7 +1,9 @@
+import { ERoutes } from '@/configuration/routes'
 import { useAuthStore, useNotificationsStore } from '@/storage'
 import { validateEmail, validatePassword } from '@/utils'
 import { Button, Input } from 'antd'
 import { ChangeEvent, useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Title } from '../Title/Title'
 import classes from './FormLogin.module.scss'
 
@@ -73,6 +75,11 @@ export const FormLogin = () => {
 				>
 					Отправить
 				</Button>
+
+				<p className={classes.subtitle}>
+					Еще нет аккаунта?{' '}
+					<Link to={ERoutes.registration}>Зарегестрируйтесь</Link>
+				</p>
 			</div>
 		</form>
 	)

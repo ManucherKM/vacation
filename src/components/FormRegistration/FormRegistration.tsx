@@ -1,7 +1,9 @@
+import { ERoutes } from '@/configuration/routes'
 import { useAuthStore, useNotificationsStore } from '@/storage'
 import { validateEmail, validatePassword } from '@/utils'
 import { Button, Input } from 'antd'
 import { ChangeEvent, useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Title } from '../Title/Title'
 import classes from './FormRegistration.module.scss'
 
@@ -73,6 +75,10 @@ export const FormRegistration = () => {
 				>
 					Отправить
 				</Button>
+
+				<p className={classes.subtitle}>
+					Уже есть аккаунт? <Link to={ERoutes.login}>Авторизуйтесь</Link>
+				</p>
 			</div>
 		</form>
 	)

@@ -1,5 +1,6 @@
 // Types
-import type { IAuthStore } from './types'
+import axios from '@/configuration/axios'
+import { EAuthStoreApiRoutes, type IAuthStore } from './types'
 
 // Utils
 
@@ -19,6 +20,8 @@ export const useAuthStore = create(
 			async login(loginDto) {
 				try {
 					console.log(loginDto)
+					const { data } = await axios.post(EAuthStoreApiRoutes.login, loginDto)
+					console.log(data)
 
 					// Return true.
 					return true

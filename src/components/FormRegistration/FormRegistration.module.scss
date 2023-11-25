@@ -1,3 +1,5 @@
+@import '@/assets/styles/vars.scss';
+
 .root {
 	max-width: 380px;
 	width: 100%;
@@ -12,5 +14,15 @@
 	.title {
 		text-align: center;
 		margin-bottom: 20px;
+	}
+
+	.subtitle {
+		color: rgb(177, 177, 177);
+		text-align: center;
+
+		a {
+			color: $blue;
+			text-decoration: none;
+		}
 	}
 }
