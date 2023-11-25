@@ -9,9 +9,11 @@ export const Home = () => {
 			<NavBar />
 			<header className={classes.header}>
 				<img className={classes.img} src={banner} alt="img" />
-				<Button type="dashed" size="large">
-					GitHub
-				</Button>
+				<a href="https://github.com/ManucherKM/vacation">
+					<Button type="dashed" size="large">
+						GitHub
+					</Button>
+				</a>
 			</header>
 		</div>
 	)
