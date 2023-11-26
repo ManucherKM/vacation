@@ -9,14 +9,24 @@ export interface IResponseVacation {
 	reqs_list: { end: string; start: string; name: string }[]
 }
 
+export interface IApplication {
+	id: string
+	name: string
+	message: string
+}
+
 /** Shared storage. */
 export interface IStore {
 	/** Loading status. */
 	isLoading: boolean
 
+	applications: IApplication[]
+
 	vacations: IVacation[]
 
 	getVacationList: () => Promise<boolean>
+
+	getApplications: () => Promise<boolean>
 
 	addApplication: (target: {
 		date_start: string
@@ -36,4 +46,5 @@ export interface IStore {
 export enum EMainRoutes {
 	vacations = '/api/get_reqs',
 	addApplication = '/api/make_req',
+	getApplications = '/api/get_new_reqs',
 }

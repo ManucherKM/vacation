@@ -1,5 +1,11 @@
 // Types
-import { EMainRoutes, IResponseVacation, IVacation, type IStore } from './types'
+import {
+	EMainRoutes,
+	IApplication,
+	IResponseVacation,
+	IVacation,
+	type IStore,
+} from './types'
 
 // Utils
 import { create } from 'zustand'
@@ -11,6 +17,16 @@ import { useAuthStore } from '..'
 const defaultStore = {
 	isLoading: false,
 	vacations: [],
+	applications: [],
+}
+
+function getDate(date: string) {
+	const today = new Date(date)
+	const yyyy = today.getFullYear()
+	let mm = today.getMonth() + 1 // Months start at 0!
+	let dd = today.getDate()
+
+	return `${dd}.${mm}.${yyyy}`
 }
 
 /** With this hook you can access shared storage. */
@@ -26,8 +42,6 @@ export const useStore = create<IStore>(set => ({
 					auth_token: token,
 				},
 			)
-
-			console.log(data)
 
 			if (!data?.reqs_list?.length) {
 				return false
@@ -59,6 +73,37 @@ export const useStore = create<IStore>(set => ({
 			if (status !== 200) {
 				return false
 			}
+
+			return true
+		} catch (e) {
+			console.log(e)
+
+			return false
+		}
+	},
+	async getApplications() {
+		try {
+			const token = useAuthStore.getState().token
+
+			if (!token) {
+				return false
+			}
+
+			const { data } = await axios.post<string[]>(EMainRoutes.getApplications, {
+				auth_token: token,
+			})
+
+			if (!data?.length) {
+				return false
+			}
+
+			const formatData: IApplication[] = data.map(i => ({
+				id: i[0],
+				name: i[4],
+				message: `${i[4]}. Отпуск с ${getDate(i[2])} по ${getDate(i[3])}`,
+			}))
+
+			set({ applications: formatData })
 
 			return true
 		} catch (e) {

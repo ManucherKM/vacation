@@ -77,7 +77,6 @@ export const LayoutSupervisor: FC<ILayoutSupervisor> = ({ children }) => {
 						)
 					},
 				},
-				
 
 				{
 					key: 'Работники',

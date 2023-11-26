@@ -66,7 +66,6 @@ export const LayoutWorker: FC<ILayoutWorker> = ({ children }) => {
 						)
 					},
 				},
-				
 			],
 		},
 	]

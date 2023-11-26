@@ -64,12 +64,7 @@ export const Subordinates = () => {
 
 	const eventNames = [...new Set(testData.map(event => event.EventName))]
 	const eventColors = eventNames
-		.map((val, i) => {
-			var color = `hsl(${
-				(i * (360 / (eventNames.length || 1))) % 360
-			},100%,50%, 1)`
-			return color
-		})
+		.map(() => '#30D5C8')
 		.map(value => ({ value, sort: Math.random() }))
 		.sort((a, b) => a.sort - b.sort)
 		.map(({ value }) => value)

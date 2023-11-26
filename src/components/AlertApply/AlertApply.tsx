@@ -5,9 +5,28 @@ import classes from './AlertApply.module.scss'
 export interface IAlertApply {
 	message: string
 	name: string
+	onConfirm?: () => void
+	onReject?: () => void
 }
 
-export const AlertApply: FC<IAlertApply> = ({ message, name }) => {
+export const AlertApply: FC<IAlertApply> = ({
+	message,
+	name,
+	onConfirm,
+	onReject,
+}) => {
+	function configrmHandler() {
+		if (onConfirm) {
+			onConfirm()
+		}
+	}
+
+	function rejectHandler() {
+		if (onReject) {
+			onReject()
+		}
+	}
+
 	return (
 		<Alert
 			message={
@@ -21,8 +40,8 @@ export const AlertApply: FC<IAlertApply> = ({ message, name }) => {
 					</div>
 
 					<div className={classes.controls}>
-						<Button>Принять</Button>
-						<Button>Отказать</Button>
+						<Button onClick={configrmHandler}>Принять</Button>
+						<Button onClick={rejectHandler}>Отказать</Button>
 					</div>
 				</div>
 			}
