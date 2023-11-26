@@ -1,6 +1,6 @@
 ![Banner](https://github.com/ManucherKM/vacation/blob/master/preview/Banner.png?raw=true)
 
-# 💿 Vacation | Hackathon.
+# ☀️ Vacation | Hackathon.
 
 [Demo](https://vacation-mu.vercel.app)
 
