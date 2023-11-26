@@ -27,14 +27,16 @@ export const useAuthStore = create(
 			...defaultAuthStore,
 			async login(loginDto) {
 				try {
-					await axios.post<ILoginResponse>(EAuthStoreApiRoutes.login, loginDto)
-					console.log(loginDto)
+					const { data } = await axios.post<ILoginResponse>(
+						EAuthStoreApiRoutes.login,
+						loginDto,
+					)
 
-					set({ token: 'asd', role: ERoles.supervisor })
+					if (!data?.auth_token) {
+						return false
+					}
 
-					// if (!data?.token) {
-					// 	return false
-					// }
+					set({ token: data.auth_token, role: data.role as ERoles })
 
 					// Return true.
 					return true

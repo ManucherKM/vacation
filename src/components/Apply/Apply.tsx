@@ -1,4 +1,4 @@
-import { useNotificationsStore, useStore } from '@/storage'
+import { useAuthStore, useNotificationsStore, useStore } from '@/storage'
 import { Button, Checkbox, DatePicker, Input } from 'antd'
 import { ChangeEvent, useState } from 'react'
 import classes from './Apply.module.scss'
@@ -8,6 +8,9 @@ export const Apply = () => {
 	const [conditions, setConditions] = useState<string>('')
 	const setLoading = useStore(store => store.setLoading)
 	const newMessage = useNotificationsStore(store => store.newMessage)
+	const newError = useNotificationsStore(store => store.newError)
+	const addApplication = useStore(store => store.addApplication)
+	const token = useAuthStore(store => store.token)
 
 	const [pay, setPay] = useState(false)
 
@@ -23,7 +26,7 @@ export const Apply = () => {
 		setConditions(e.target.value)
 	}
 
-	function submitHandler() {
+	async function submitHandler() {
 		if (!dates.length) {
 			return
 		}
@@ -37,12 +40,23 @@ export const Apply = () => {
 		}
 
 		setLoading(true)
-		console.log(dates, pay)
 
-		setTimeout(() => {
+		const isSuccess = await addApplication({
+			date_start: dates[0],
+			date_end: dates[1],
+			auth_token: token || '',
+			payments: pay ? '1' : '0',
+			benefit: conditions,
+		})
+
+		if (!isSuccess) {
 			setLoading(false)
-			newMessage('Заявка отправлена')
-		}, 2000)
+			newError('Не удалось отправить заявку')
+			return
+		}
+
+		setLoading(false)
+		newMessage('Заявка отправлена')
 	}
 
 	return (

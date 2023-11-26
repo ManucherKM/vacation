@@ -12,7 +12,7 @@ export interface ILoginTarget {
  * function.
  */
 export interface ILoginResponse {
-	token: string
+	auth_token: string
 	role: `${ERoles}`
 }
 
@@ -81,7 +81,7 @@ export interface IAuthStore {
 /** Routes for api requests to the authorization store. */
 export enum EAuthStoreApiRoutes {
 	/** Route for user authorization. */
-	login = '/register',
+	login = '/login',
 
 	/** Route for user registration. */
 	registration = '/api/auth/registration',

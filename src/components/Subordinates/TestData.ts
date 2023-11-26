@@ -1,4 +1,4 @@
-class Event {
+export class Event {
 	EventName: string = ''
 	EventSource: string = ''
 	Start: Date = new Date()
