@@ -77,15 +77,7 @@ export const LayoutSupervisor: FC<ILayoutSupervisor> = ({ children }) => {
 						)
 					},
 				},
-				{
-					key: 'Статистика',
-					label: 'Статистика',
-					onClick: function () {
-						history.push(
-							ERoutes.supervisor + '/' + EOptionSupervisorDashboard.statistic,
-						)
-					},
-				},
+				
 
 				{
 					key: 'Работники',

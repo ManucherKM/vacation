@@ -4,7 +4,6 @@ import {
 	Calendar,
 	History,
 	LayoutSupervisor,
-	Statistic,
 	Subordinates,
 } from '@/components'
 import { EOptionSupervisorDashboard } from '@/configuration/routes'
@@ -18,13 +17,11 @@ export const SupervisorDashboard = () => {
 			{option === EOptionSupervisorDashboard.calendar && <Calendar />}
 			{option === EOptionSupervisorDashboard.apply && <Apply />}
 			{option === EOptionSupervisorDashboard.history && <History />}
-			{option === EOptionSupervisorDashboard.statistic && <Statistic />}
 			{option === EOptionSupervisorDashboard.subordinates && <Subordinates />}
 			{option === EOptionSupervisorDashboard.applications && <Applications />}
 			{option !== EOptionSupervisorDashboard.apply &&
 				option !== EOptionSupervisorDashboard.calendar &&
 				option !== EOptionSupervisorDashboard.history &&
-				option !== EOptionSupervisorDashboard.statistic &&
 				option !== EOptionSupervisorDashboard.subordinates &&
 				option !== EOptionSupervisorDashboard.applications && (
 					<h2>Option not found</h2>

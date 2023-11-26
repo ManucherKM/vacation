@@ -1,4 +1,4 @@
-import { Apply, Calendar, History, Statistic } from '@/components'
+import { Apply, Calendar, History } from '@/components'
 import { LayoutWorker } from '@/components/LayoutWorker'
 import { EOptionWorkerDashboard } from '@/configuration/routes'
 import { useParams } from 'react-router'
@@ -11,13 +11,9 @@ export const WorkerDashboard = () => {
 			{option === EOptionWorkerDashboard.calendar && <Calendar />}
 			{option === EOptionWorkerDashboard.apply && <Apply />}
 			{option === EOptionWorkerDashboard.history && <History />}
-			{option === EOptionWorkerDashboard.statistic && <Statistic />}
 			{option !== EOptionWorkerDashboard.apply &&
 				option !== EOptionWorkerDashboard.calendar &&
-				option !== EOptionWorkerDashboard.history &&
-				option !== EOptionWorkerDashboard.statistic && (
-					<h2>Option not found</h2>
-				)}
+				option !== EOptionWorkerDashboard.history && <h2>Option not found</h2>}
 		</LayoutWorker>
 	)
 }

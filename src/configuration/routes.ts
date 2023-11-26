@@ -19,14 +19,12 @@ export enum EOptionWorkerDashboard {
 	calendar = 'calendar',
 	history = 'history',
 	apply = 'apply',
-	statistic = 'statistic',
 }
 
 export enum EOptionSupervisorDashboard {
 	calendar = 'calendar',
 	history = 'history',
 	apply = 'apply',
-	statistic = 'statistic',
 	subordinates = 'subordinates',
 	applications = 'applications',
 }

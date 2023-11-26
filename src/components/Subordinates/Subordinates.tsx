@@ -120,9 +120,9 @@ export const Subordinates = () => {
 		data[labels.indexOf(event.EventSource)] = [
 			start,
 			end,
-			format(event.Start, 'yyyy-MM-dd') +
+			format(event.Start, 'dd.MM.yyyy') +
 				' - ' +
-				format(event.End, 'yyyy-MM-dd'),
+				format(event.End, 'dd.MM.yyyy'),
 		]
 
 		return {
@@ -144,7 +144,6 @@ export const Subordinates = () => {
 
 	const options: ChartOptions<'bar'> = {
 		indexAxis: 'y' as const,
-		aspectRatio: 2,
 		plugins: {
 			tooltip: {
 				callbacks: {
@@ -194,15 +193,15 @@ export const Subordinates = () => {
 				type: 'time',
 				time: {
 					displayFormats: {
-						millisecond: 'yyyy-MM-dd',
-						second: 'yyyy-MM-dd',
-						minute: 'yyyy-MM-dd',
-						hour: 'yyyy-MM-dd',
-						day: 'yyyy-MM-dd',
-						week: 'yyyy-MM-dd',
-						month: 'yyyy-MM-dd',
-						quarter: 'yyyy-MM-dd',
-						year: 'yyyy-MM-dd',
+						millisecond: 'dd.MM.yyyy',
+						second: 'dd.MM.yyyy',
+						minute: 'dd.MM.yyyy',
+						hour: 'dd.MM.yyyy',
+						day: 'dd.MM.yyyy',
+						week: 'dd.MM.yyyy',
+						month: 'dd.MM.yyyy',
+						quarter: 'dd.MM.yyyy',
+						year: 'dd.MM.yyyy',
 					},
 					unit: 'month',
 				},

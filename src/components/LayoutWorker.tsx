@@ -66,15 +66,7 @@ export const LayoutWorker: FC<ILayoutWorker> = ({ children }) => {
 						)
 					},
 				},
-				{
-					key: 'Статистика',
-					label: 'Статистика',
-					onClick: function () {
-						history.push(
-							ERoutes.workerdashboard + '/' + EOptionWorkerDashboard.statistic,
-						)
-					},
-				},
+				
 			],
 		},
 	]
